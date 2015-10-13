@@ -69,6 +69,7 @@ class Create_New_Volume(unittest.TestCase):
         terminate_status = driver.find_element_by_xpath("//p[contains(text(), 'Scheduled deletion of Volume Snapshot:')]")
         print terminate_status.text
         driver.find_element_by_xpath("//ul[@id='volumes_and_snapshots']//a[contains(., 'Volumes')]").click()
+        #naive solution, need this interval because the snapshot is still deleting.
         time.sleep(10)
         table_element = driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]")
         print table_element.text
