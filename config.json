@@ -1,0 +1,12 @@
+{
+  "user": "admin",
+  "password": "",
+  "test_ip": "https://",
+  "test_vm_name": "horizon_test_vm_01",
+  "test_net": "horizon_test_network",
+  "test_subnet" : "horizon_test_subnet",
+  "test_subnet_cidr": "192.168.0.0/24",
+  "test_security_group": "horizon_security_test",
+  "test_volume" : "horizon_volume_test",
+  "test_snapshot_name" : "horizon_snapshot_test"
+}
