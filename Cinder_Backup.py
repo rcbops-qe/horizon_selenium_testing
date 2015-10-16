@@ -9,7 +9,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re, json
 
-class Cinder_Snapshot(unittest.TestCase):
+class Cinder_Backup(unittest.TestCase):
     def setUp(self):
         with open('config.json', 'r') as f:
             self.config = json.load(f)
@@ -20,7 +20,7 @@ class Cinder_Snapshot(unittest.TestCase):
         self.verificationErrors = []
         self.accept_next_alert = True
 
-    def test_Cinder_Snapshot(self):
+    def test_Cinder_Backup(self):
         driver = self.driver
         driver.get(self.base_url + "/auth/login/")
         driver.find_element_by_id("id_username").clear()
@@ -50,27 +50,27 @@ class Cinder_Snapshot(unittest.TestCase):
             raise
         driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]/td[contains(text(), 'Available')]")
 
-        #Create cinder snapshot
+        #Create cinder backup
         driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]//a[@data-toggle='dropdown']").click()
-        driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]//a[contains(. , 'Create Snapshot')]").click()
+        driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]//a[contains(. , 'Create Backup')]").click()
         driver.find_element_by_id("id_name").clear()
-        driver.find_element_by_id("id_name").send_keys(self.config['test_cinder_snapshot'])
-        driver.find_element_by_xpath("//input[@type='submit' and @value='Create Volume Snapshot']").click()
-        Success_alert = driver.find_element_by_xpath("//p[contains(text(), 'Creating volume snapshot ')]")
-        if "Info:" in Success_alert.text and self.config['test_cinder_snapshot'] in str(Success_alert.text):
+        driver.find_element_by_id("id_name").send_keys(self.config['test_volume_backup'])
+        driver.find_element_by_xpath("//input[@type='submit' and @value='Create Volume Backup']").click()
+        Success_alert = driver.find_element_by_xpath("//p[contains(text(), 'Creating volume backup ')]")
+        print Success_alert.text
+        if "Success:" in Success_alert.text and self.config['test_volume_backup'] in str(Success_alert.text):
              print Success_alert.text
         else:
             raise
-        driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_cinder_snapshot'] + "')]/td[contains(text(), 'Available')]")
-        #Delete Cinder Snapshot
-        driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_cinder_snapshot'] + "')]//input[@type='checkbox']").click()
-        driver.find_element_by_xpath("//button[contains(., 'Delete Volume Snapshots')]").click()
-        driver.find_element_by_xpath("//a[contains(text(), 'Delete Volume Snapshots')]").click()
-        terminate_status = driver.find_element_by_xpath("//p[contains(text(), 'Scheduled deletion of Volume Snapshot:')]")
+        driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume_backup'] + "')]/td[contains(text(), 'Available')]")
+        #Delete Cinder backup
+        driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume_backup'] + "')]//input[@type='checkbox']").click()
+        driver.find_element_by_xpath("//button[contains(., 'Delete Volume Backups')]").click()
+        driver.find_element_by_xpath("//a[contains(text(), 'Delete Volume Backups')]").click()
+        terminate_status = driver.find_element_by_xpath("//p[contains(text(), 'Scheduled deletion of Volume Backup:')]")
         print terminate_status.text
         driver.find_element_by_xpath("//ul[@id='volumes_and_snapshots']//a[contains(., 'Volumes')]").click()
         #naive solution, need this interval because the snapshot is still deleting.
-        time.sleep(10)
         table_element = driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]")
         print table_element.text
         table_element.find_element_by_xpath(".//input[@type='checkbox']").click()
