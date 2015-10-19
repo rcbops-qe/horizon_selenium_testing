@@ -1,12 +1,17 @@
 {
-  "user": "admin",
+  "user": "",
   "password": "",
-  "test_ip": "https://",
+  "test_ip": "https://104.239.240.212/",
   "test_vm_name": "horizon_test_vm_01",
   "test_net": "horizon_test_network",
   "test_subnet" : "horizon_test_subnet",
   "test_subnet_cidr": "192.168.0.0/24",
   "test_security_group": "horizon_security_test",
   "test_volume" : "horizon_volume_test",
-  "test_snapshot_name" : "horizon_snapshot_test"
+  "test_snapshot_name" : "horizon_snapshot_test",
+  "test_snapshot_vm" : "horizon_snapshot_vm_test",
+  "test_cinder_snapshot" : "horizon_cinder_snapshot",
+  "test_volume_backup": "horizon_cinder_backup",
+  "test_boot_volume": "horizon_boot_volume",
+  "test_volume_vm" : "horizon_vm_from_volume"
 }
