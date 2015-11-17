@@ -15,7 +15,7 @@ class Create_New_Instance(unittest.TestCase):
             self.config = json.load(f)
         fp = webdriver.FirefoxProfile()
         self.driver = webdriver.Firefox(fp)
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(60)
         self.base_url = self.config['test_ip']
         self.verificationErrors = []
         self.accept_next_alert = True
@@ -36,8 +36,8 @@ class Create_New_Instance(unittest.TestCase):
         driver.find_element_by_xpath("//a[@href='/project/instances/launch']").click()
         driver.find_element_by_id("id_name").clear()
         driver.find_element_by_id("id_name").send_keys(self.config['test_vm_name'])
-        Select(driver.find_element_by_id("id_flavor")).select_by_index(1)
-        driver.find_element_by_css_selector("option[value=\"1\"]").click()
+        Select(driver.find_element_by_id("id_flavor")).select_by_index(4)
+        # driver.find_element_by_css_selector("option[value=\"1\"]").click()
         Select(driver.find_element_by_id("id_source_type")).select_by_visible_text("Boot from image")
         driver.find_element_by_css_selector("option[value=\"image_id\"]").click()
         Select(driver.find_element_by_id("id_image_id")).select_by_index(1)
@@ -47,8 +47,10 @@ class Create_New_Instance(unittest.TestCase):
             driver.find_element_by_xpath("//ul[@id='available_network']/li[1]/a[1]").click()
 
         driver.find_element_by_xpath("//input[@value='Launch']").click()
+        # time.sleep(30)
 
         Success_alert = driver.find_element_by_xpath("//p[contains(text(), 'Launched instance')]")
+        print Success_alert
 
         if "Success" in Success_alert.text and self.config['test_vm_name'] in str(Success_alert.text):
              print Success_alert.text
