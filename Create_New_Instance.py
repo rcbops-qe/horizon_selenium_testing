@@ -36,11 +36,11 @@ class Create_New_Instance(unittest.TestCase):
         driver.find_element_by_xpath("//a[@href='/project/instances/launch']").click()
         driver.find_element_by_id("id_name").clear()
         driver.find_element_by_id("id_name").send_keys(self.config['test_vm_name'])
-        Select(driver.find_element_by_id("id_flavor")).select_by_visible_text("m1.xlarge")
+        Select(driver.find_element_by_id("id_flavor")).select_by_visible_text("m1.tiny")
         # driver.find_element_by_css_selector("option[value=\"1\"]").click()
         Select(driver.find_element_by_id("id_source_type")).select_by_visible_text("Boot from image")
         driver.find_element_by_css_selector("option[value=\"image_id\"]").click()
-        print driver.find_element_by_id("id_image_id").text
+        # print driver.find_element_by_id("id_image_id").text
         # time.sleep(60)
         # Select(driver.find_element_by_id("id_image_id"))
         driver.find_element_by_xpath("//option[contains(text(), 'cirros')]").click()

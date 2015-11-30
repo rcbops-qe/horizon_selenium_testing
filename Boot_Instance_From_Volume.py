@@ -15,7 +15,7 @@ class Boot_Instance_From_Volume(unittest.TestCase):
             self.config = json.load(f)
         fp = webdriver.FirefoxProfile()
         self.driver = webdriver.Firefox(fp)
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(60)
         self.base_url = self.config['test_ip']
         self.verificationErrors = []
         self.accept_next_alert = True

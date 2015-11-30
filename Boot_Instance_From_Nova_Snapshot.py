@@ -15,7 +15,7 @@ class Boot_Instance_From_Nova_Snapshot(unittest.TestCase):
             self.config = json.load(f)
         fp = webdriver.FirefoxProfile()
         self.driver = webdriver.Firefox(fp)
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(60)
         self.base_url = self.config['test_ip']
         self.verificationErrors = []
         self.accept_next_alert = True
@@ -38,11 +38,10 @@ class Boot_Instance_From_Nova_Snapshot(unittest.TestCase):
         driver.find_element_by_xpath("//a[@href='/project/instances/launch']").click()
         driver.find_element_by_id("id_name").clear()
         driver.find_element_by_id("id_name").send_keys(self.config['test_vm_name'])
-        Select(driver.find_element_by_id("id_flavor")).select_by_index(1)
-        driver.find_element_by_css_selector("option[value=\"1\"]").click()
+        Select(driver.find_element_by_id("id_flavor")).select_by_visible_text("m1.tiny")
         Select(driver.find_element_by_id("id_source_type")).select_by_visible_text("Boot from image")
         driver.find_element_by_css_selector("option[value=\"image_id\"]").click()
-        Select(driver.find_element_by_id("id_image_id")).select_by_index(1)
+        driver.find_element_by_xpath("//option[contains(text(), 'cirros')]").click()
         driver.find_element_by_xpath("//ul[@role='tablist']//a[text()='Networking']").click()
         select_network = driver.find_element_by_xpath("//ul[@id='selected_network']").text
         if select_network == '':

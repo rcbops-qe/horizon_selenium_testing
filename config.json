@@ -1,7 +1,7 @@
 {
-  "user": "",
-  "password": "",
-  "test_ip": "https://104.239.240.212/",
+  "user": "admin",
+  "password": "ac7de6aa1d1d190ff3a4231e694e0f2c7749e87dd705bd27ef3c",
+  "test_ip": "https://127.0.0.1:4443",
   "test_vm_name": "horizon_test_vm_01",
   "test_net": "horizon_test_network",
   "test_subnet" : "horizon_test_subnet",
