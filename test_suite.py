@@ -38,8 +38,6 @@ class TestSuite(unittest.TestCase):
             unittest.defaultTestLoader.loadTestsFromTestCase(Create_New_Instance_with_Security_Rules_and_Network.Create_New_Instance_with_Security_Rules_and_Network),
             unittest.defaultTestLoader.loadTestsFromTestCase(Create_New_Network.Create_New_Network),
             unittest.defaultTestLoader.loadTestsFromTestCase(Create_New_Nova_Snapshot.Create_New_Nova_Snapshot),
-            unittest.defaultTestLoader.loadTestsFromTestCase(Delete_Network.Delete_Network),
-            unittest.defaultTestLoader.loadTestsFromTestCase(Delete_Security_Rules.Delete_Security_Rules),
             unittest.defaultTestLoader.loadTestsFromTestCase(JSError_Project_Network.JSError_Project_Network),
             unittest.defaultTestLoader.loadTestsFromTestCase(JSError_Admin_System.JSError_Admin_System),
             unittest.defaultTestLoader.loadTestsFromTestCase(JSError_Project_Compute.JSError_Project_Compute),

@@ -32,7 +32,7 @@ class Boot_Instance_From_Volume(unittest.TestCase):
         compute_status = driver.find_element_by_xpath("//h4[contains(. , 'Compute')]").get_attribute('class')
         if compute_status != 'active':
             driver.find_element_by_xpath("//dd/div/h4[text()[contains(.,'Compute')]]").click()
-        driver.find_element_by_xpath("//dd/div//a[text()='Overview' and @href='/project/']").click()
+        driver.find_element_by_xpath("//dd/div//a[text()='Instances' and @href='/project/instances/']").click()
         driver.find_element_by_xpath("//dd/div//a[text()='Volumes' and @href='/project/volumes/']").click()
         volumes_status = driver.find_element_by_xpath("//ul[@id='volumes_and_snapshots']//li[contains(., 'Volumes')]").get_attribute('class')
         if volumes_status != 'active':
