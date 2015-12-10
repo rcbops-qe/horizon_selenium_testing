@@ -15,7 +15,7 @@ class Boot_Instance_From_Volume(unittest.TestCase):
             self.config = json.load(f)
         fp = webdriver.FirefoxProfile()
         self.driver = webdriver.Firefox(fp)
-        self.driver.implicitly_wait(60)
+        self.driver.implicitly_wait(30)
         self.base_url = self.config['test_ip']
         self.verificationErrors = []
         self.accept_next_alert = True
@@ -32,6 +32,7 @@ class Boot_Instance_From_Volume(unittest.TestCase):
         compute_status = driver.find_element_by_xpath("//h4[contains(. , 'Compute')]").get_attribute('class')
         if compute_status != 'active':
             driver.find_element_by_xpath("//dd/div/h4[text()[contains(.,'Compute')]]").click()
+        driver.find_element_by_xpath("//dd/div//a[text()='Overview' and @href='/project/']").click()
         driver.find_element_by_xpath("//dd/div//a[text()='Volumes' and @href='/project/volumes/']").click()
         volumes_status = driver.find_element_by_xpath("//ul[@id='volumes_and_snapshots']//li[contains(., 'Volumes')]").get_attribute('class')
         if volumes_status != 'active':
