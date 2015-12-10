@@ -47,6 +47,19 @@ class Create_New_Security_Rules(unittest.TestCase):
         Select(driver.find_element_by_id("id_rule_menu")).select_by_visible_text("SSH")
         driver.find_element_by_xpath("//input[@value='Add' and @type='submit']").click()
         print driver.find_element_by_xpath("//p[contains(text(), 'Successfully added rule: ALLOW IPv4 22')]").text
+        driver.find_element_by_css_selector("dt").click()
+        compute_status = driver.find_element_by_xpath("//h4[contains(. , 'Compute')]").get_attribute('class')
+
+        if compute_status != 'active':
+            driver.find_element_by_xpath("//dd/div/h4[text()[contains(.,'Compute')]]").click()
+        driver.find_element_by_xpath("//dd/div//a[text()='Access & Security' and @href='/project/access_and_security/']").click()
+        driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_security_group'] + "')]//input").click()
+        driver.find_element_by_xpath("//button[contains(., 'Delete Security Groups')]").click()
+        driver.find_element_by_xpath("//a[contains(text(), 'Delete Security Groups')]").click()
+
+
+        terminate_status = driver.find_element_by_xpath("//p[contains(text(), 'Deleted Security Group: " + self.config['test_security_group'] + "')]")
+        print terminate_status.text
 
     def is_element_present(self, how, what):
         try: self.driver.find_element(by=how, value=what)

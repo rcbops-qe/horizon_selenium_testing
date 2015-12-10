@@ -85,8 +85,6 @@ class Attach_Volume_To_Instance(unittest.TestCase):
             raise
         cinder_element = driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]")
         attached_info = "Attached to " + self.config['test_vm_name']
-        print cinder_element.get_attribute("textContent")
-        print "cao ni ma"
         time.sleep(10)
         #delete vm isntance, you cant delete the volme if the volume is been attached.
         driver.find_element_by_xpath("//dd/div//a[text()='Instances' and @href='/project/instances/']").click()
@@ -98,6 +96,7 @@ class Attach_Volume_To_Instance(unittest.TestCase):
         terminate_status = driver.find_element_by_xpath("//p[contains(text(), 'Scheduled termination of Instance:')]")
         print terminate_status.text
         #delete cinder volume
+        time.sleep(10)
         driver.find_element_by_xpath("//dd/div//a[text()='Volumes' and @href='/project/volumes/']").click()
         cinder_element = driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]")
         cinder_element.find_element_by_xpath(".//input[@type='checkbox']").click()

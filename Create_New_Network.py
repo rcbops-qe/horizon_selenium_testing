@@ -53,6 +53,15 @@ class Create_New_Network(unittest.TestCase):
 
         table_element = driver.find_element_by_xpath(".//tr[contains(@data-display, '" + self.config['test_net'] + "')]")
         print table_element.text
+        #delete network
+        driver.find_element_by_css_selector("dt").click()
+        driver.find_element_by_xpath("//dd/div/h4[text()[contains(.,'Network')]]").click()
+        driver.find_element_by_xpath("//dd/div//a[text()='Networks' and @href='/project/networks/']").click()
+        driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_net'] + "')]//input").click()
+        driver.find_element_by_xpath("//button[contains(., 'Delete Networks')]").click()
+        driver.find_element_by_xpath("//a[contains(text(), 'Delete Networks')]").click()
+
+        terminate_status = driver.find_element_by_xpath("//p[contains(text(), 'Deleted Network: " + self.config['test_net'] + "')]")
         driver.find_element_by_xpath("//div[@id='profile_editor_switcher']/button").click()
         driver.find_element_by_link_text("Sign Out").click()
 
