@@ -70,8 +70,9 @@ class Cinder_Backup(unittest.TestCase):
         driver.find_element_by_xpath("//a[contains(text(), 'Delete Volume Backups')]").click()
         terminate_status = driver.find_element_by_xpath("//p[contains(text(), 'Scheduled deletion of Volume Backup:')]")
         print terminate_status.text
-        driver.find_element_by_xpath("//ul[@id='volumes_and_snapshots']//a[contains(., 'Volumes')]").click()
+        #driver.find_element_by_xpath("//ul[@id='volumes_and_snapshots']//a[contains(., 'Volumes')]").click()
         #delete Cinder Volume.
+        driver.get(driver.current_url + "?tab=volumes_and_snapshots__volumes_tab")
         table_element = driver.find_element_by_xpath("//tr[contains(@data-display, '" + self.config['test_volume'] + "')]")
         print table_element.text
         table_element.find_element_by_xpath(".//input[@type='checkbox']").click()
