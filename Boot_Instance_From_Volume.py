@@ -41,7 +41,7 @@ class Boot_Instance_From_Volume(unittest.TestCase):
         driver.find_element_by_id("id_name").clear()
         driver.find_element_by_id("id_name").send_keys(self.config['test_boot_volume'])
         Select(driver.find_element_by_id("id_volume_source_type")).select_by_visible_text("Image")
-        Select(driver.find_element_by_id("id_image_source")).select_by_index(1)
+        driver.find_element_by_xpath("//option[contains(text(), 'cirros')]").click()
         driver.find_element_by_xpath("//input[@type='submit' and @value='Create Volume']").click()
 
         Success_alert = driver.find_element_by_xpath("//p[contains(text(), 'Creating volume')]")
